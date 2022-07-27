@@ -1,0 +1,13 @@
+.container{
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+.card_price{
+    border: 1px dashed rgb(194, 190, 190);
+    padding: 5px 20px;
+}
+
+.card-img-top{
+    height: 150px;
+    width: auto;
+}

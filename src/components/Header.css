@@ -1,0 +1,46 @@
+.header_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  align-items: center;
+  background-color: rgb(42, 42, 71);
+}
+
+.title{
+    color: #fff;
+}
+
+.input {
+  border: 1px solid rgb(120, 117, 117);
+  outline: none;
+  border-radius: 5px;
+  padding: 7px;
+  width: 500px;
+  background-color: transparent;
+  background-image: url(//addsearch.com/logo/AAAAAA-20.png) !important;
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+  color: #fff;
+
+}
+.nav_container {
+  display: flex;
+  align-items: center;
+}
+.btns{
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+}
+.fas{
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.btns:hover{
+  border: none;
+  outline: none;
+  background-color: transparent;
+}

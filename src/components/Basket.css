@@ -1,0 +1,46 @@
+.basket {
+    height: 400px;
+    width: 400px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    position: absolute;
+    right: 0;
+    transform: translateY(-70px);
+    z-index: 9999;
+    overflow: scroll;
+}
+
+.basket_products{
+   padding: 20px 0px;
+}
+.basket_product {
+    display: flex;
+    justify-content: space-between;
+}
+.basket_img{
+  height: 40px;
+  width: 40px;
+}
+
+.buttons{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.btn-cancel{
+    position: absolute;
+   height: 35px;
+   width: 35px;
+   left: -2px;
+   top: -2px;
+   font-size: 1.3rem;
+   display: flex;
+   align-items: center;
+}
+.fa-trash {
+    color: rgb(42, 124, 42);
+}
