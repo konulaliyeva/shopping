@@ -25,6 +25,10 @@
   height: 40px;
   width: 40px;
 }
+.product_count{
+    font-size: 17px;
+    height: 40px;
+}
 
 .buttons{
     background-color: transparent;
@@ -43,4 +47,7 @@
 }
 .fa-trash {
     color: rgb(42, 124, 42);
+}
+.display_basket{
+    display: none;
 }

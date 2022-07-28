@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Basket.css";
+import SelectForm from "./SelectForm";
 function Basket({ showBasket, basketItems, handleDeleteButton }) {
+  const [selectedValue, setSelectedValue]=useState(1);
+  function handleSelectValue(event){
+  setSelectedValue(event.target.value);
+  }
   return (
     <div className="basket">
       <div className="basket_products">
@@ -8,6 +13,8 @@ function Basket({ showBasket, basketItems, handleDeleteButton }) {
             x
           </button>
           <h3 className="mb-5 text-center">Your Products</h3>
+          {basketItems.length===0 && <p style={{fontStyle: "italic", textAlign:'center', color: "rgb(142, 139, 139"}}>Your basket is currently empty!</p>}
+
         {basketItems.map((basketItem) => {
           return (
             <div key={basketItem.id} className="basket_product">
@@ -18,12 +25,10 @@ function Basket({ showBasket, basketItems, handleDeleteButton }) {
               />
               <div className="product_desc">
                 <h6>{basketItem.title}</h6>
-                <p>{basketItem.price}$</p>
+                <p>{basketItem.price * selectedValue}$</p>
               </div>
               <div className="product_count">
-                <button className="buttons">-</button>
-                <span>1</span>
-                <button className="buttons">+</button>
+                <SelectForm handleSelectValue={handleSelectValue}/>
               </div>
               <div className="product_delete">
                 <button className="buttons" onClick={()=>handleDeleteButton(basketItem.id)}><i className="fa-solid fa-trash"></i></button>
@@ -31,14 +36,7 @@ function Basket({ showBasket, basketItems, handleDeleteButton }) {
             </div>
           );
         })}
-        {/* <div className="cancel">
-          <button className="btn btn-danger" onClick={() => showBasket(false)}>
-            Cancel
-          </button>
-          <button className="btn btn-success" onClick={() => showBasket(false)}>
-            Finish
-          </button>
-        </div> */}
+       
       </div>
     </div>
   );
