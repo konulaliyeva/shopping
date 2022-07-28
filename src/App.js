@@ -10,8 +10,8 @@ function App() {
   const [basket, showBasket] = useState(false);
   const [items, fetchItems] = useState([]);
   const [basketItems, setBasketItems] = useState([]);
-  const [buttonText, setButtonText] = useState("Add to Basket");
-  const [buttonColor, setButtonColor] = useState("btn-primary");
+  // const [buttonText, setButtonText] = useState("Add to Basket");
+  // const [buttonColor, setButtonColor] = useState("btn-primary");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const[limit, setLimit] = useState(8);
 
@@ -34,8 +34,8 @@ function App() {
       newBasketItem.isInBasket = true;
       return [...oldBasketItems, newBasketItem];
     });
-    setButtonText("Added");
-    setButtonColor("btn-success");
+    // setButtonText("Added");
+    // setButtonColor("btn-success");
   };
   const handleDeleteButton = (id) => {
     const newState = basketItems.filter((basketItem) => basketItem.id !== id)
@@ -71,8 +71,8 @@ function App() {
       <Body
         items={filteredProducts}
         addToBasket={handleAddToBasket}
-        buttonText={buttonText}
-        buttonColor={buttonColor}
+        // buttonText={buttonText}
+        // buttonColor={buttonColor}
         basketItems={basketItems}
         handleDeleteButton={handleDeleteButton}
 

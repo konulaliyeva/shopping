@@ -30,7 +30,7 @@ function Body({ items, addToBasket, basketItems}) {
                   </div>
                   <p className="card-text">
                     <small className="text-muted">
-                      Uploaded {new Date().getMinutes()} mins ago
+                      Uploaded {new Date().getDate()} mins ago
                     </small>
                   </p>
                 </div>
