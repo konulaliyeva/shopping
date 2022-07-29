@@ -11,21 +11,24 @@ function App() {
   const [items, fetchItems] = useState([]);
   const [basketItems, setBasketItems] = useState([]);
 
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const[limit, setLimit] = useState(8);
+  const [skip, setSkip] = useState(0);
+  const [total, setDataTotal] = useState(0);
+  const [inputValue, setInputValue] = useState("");
+
+  let limit =8;
 
   useEffect(() => {
     const fetchProductList = async () => {
       const data = await axios
-        .get(`https://dummyjson.com/products?limit=${limit}`)
-        .then((res) => res.data.products);
-        
-      fetchItems(data);
-      setFilteredProducts(data);
-
+        .get(`https://dummyjson.com/products?skip=${skip}&limit=${limit}&q=${inputValue}`)
+        .then((res) => res.data); 
+        let total = data.total;
+        const products = data.products
+      setDataTotal(total);
+      fetchItems(products);
     };
     fetchProductList();
-  }, []);
+  }, [skip, inputValue]);
 
   const handleAddToBasket = (id) => {
     setBasketItems((oldBasketItems) => {
@@ -34,18 +37,10 @@ function App() {
       newBasketItem.count = 1;
       return [...oldBasketItems, newBasketItem];
     });
-    
   };
   const handleDeleteButton = (id) => {
-    // const newState = basketItems.filter((basketItem) => basketItem.id !== id)
-    // setBasketItems((oldItem)=>{
-    //   oldItem.isDeleted = true;
-    //   return [...newState]
-    // });
     setBasketItems(basketItems.filter((basketItem) => basketItem.id !== id));
-     console.log("id--", id)
     let updatedList = items.map((item) => {
-      console.log("item id--", item.id)
 
       if (item.id === id) {
         return { ...item, isInBasket: false };
@@ -54,43 +49,41 @@ function App() {
     });
 
     fetchItems(updatedList);
-    setFilteredProducts(updatedList);
   };
 
-  const handleInputValue = (event) =>{
-    let filteredProducts =items.filter(item=>item.title.toLowerCase().includes(event.target.value));
-    setFilteredProducts(filteredProducts);
-    fetchItems(filteredProducts)
-  }
+  const handleInputValue = (event) => {
+    
+    let inputValue = event.target.value;
+    setInputValue(inputValue);
+   
+  };
 
-  const handlePageChange = () =>{
-    setLimit((oldLimit)=>{
-      return {
-        limit: oldLimit +8,
-      }
-    })
-  }
+  const handlePageChange = (page) => {
+    setSkip(() => {
+      return (page - 1) * limit
+    });
+  };
+
+  // skip = (page - 1) * limit
+
   return (
     <>
-      <Header showBasket={showBasket} handleInputValue={handleInputValue}/>
+      <Header showBasket={showBasket} handleInputValue={handleInputValue} />
       {basket && (
         <Basket
           showBasket={showBasket}
           basketItems={basketItems}
           handleDeleteButton={handleDeleteButton}
           setBasketItems={setBasketItems}
-
         />
       )}
       <Body
-        items={filteredProducts}
+        items={items}
         addToBasket={handleAddToBasket}
         basketItems={basketItems}
         handleDeleteButton={handleDeleteButton}
-
-
       />
-      <Pagination total={30} onPageChange={handlePageChange}/>
+      <Pagination total={total} onPageChange={handlePageChange} />
       <Footer />
     </>
   );
