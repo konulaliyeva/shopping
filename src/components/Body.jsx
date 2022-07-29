@@ -1,6 +1,6 @@
 import React from "react";
 import "./Body.css";
-function Body({ items, addToBasket, basketItems}) {
+function Body({ items, addToBasket, basketItems, handleDeleteButton}) {
   return (
     <div className="container">
       <div className="row row-cols-3 row-cols-md-4 g-4">

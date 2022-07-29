@@ -10,8 +10,7 @@ function App() {
   const [basket, showBasket] = useState(false);
   const [items, fetchItems] = useState([]);
   const [basketItems, setBasketItems] = useState([]);
-  // const [buttonText, setButtonText] = useState("Add to Basket");
-  // const [buttonColor, setButtonColor] = useState("btn-primary");
+
   const [filteredProducts, setFilteredProducts] = useState([]);
   const[limit, setLimit] = useState(8);
 
@@ -32,17 +31,30 @@ function App() {
     setBasketItems((oldBasketItems) => {
       const newBasketItem = items.find((item) => item.id === id);
       newBasketItem.isInBasket = true;
+      newBasketItem.count = 1;
       return [...oldBasketItems, newBasketItem];
     });
-    // setButtonText("Added");
-    // setButtonColor("btn-success");
+    
   };
   const handleDeleteButton = (id) => {
-    const newState = basketItems.filter((basketItem) => basketItem.id !== id)
-    setBasketItems((oldItem)=>{
-      oldItem.isDeleted = true;
-      return [...newState]
+    // const newState = basketItems.filter((basketItem) => basketItem.id !== id)
+    // setBasketItems((oldItem)=>{
+    //   oldItem.isDeleted = true;
+    //   return [...newState]
+    // });
+    setBasketItems(basketItems.filter((basketItem) => basketItem.id !== id));
+     console.log("id--", id)
+    let updatedList = items.map((item) => {
+      console.log("item id--", item.id)
+
+      if (item.id === id) {
+        return { ...item, isInBasket: false };
+      }
+      return item;
     });
+
+    fetchItems(updatedList);
+    setFilteredProducts(updatedList);
   };
 
   const handleInputValue = (event) =>{
@@ -66,13 +78,13 @@ function App() {
           showBasket={showBasket}
           basketItems={basketItems}
           handleDeleteButton={handleDeleteButton}
+          setBasketItems={setBasketItems}
+
         />
       )}
       <Body
         items={filteredProducts}
         addToBasket={handleAddToBasket}
-        // buttonText={buttonText}
-        // buttonColor={buttonColor}
         basketItems={basketItems}
         handleDeleteButton={handleDeleteButton}
 
