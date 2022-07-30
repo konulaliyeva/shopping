@@ -15,19 +15,19 @@ function App() {
   const [total, setDataTotal] = useState(0);
   const [inputValue, setInputValue] = useState("");
 
-  let limit =8;
+  const limit =8;
 
   useEffect(() => {
-    const fetchProductList = async () => {
+    const fetchProductList = async (skip, inputValue, limit) => {
       const data = await axios
-        .get(`https://dummyjson.com/products?skip=${skip}&limit=${limit}&q=${inputValue}`)
+        .get(`https://dummyjson.com/products/search?skip=${skip}&limit=${limit}&q=${inputValue}`)
         .then((res) => res.data); 
         let total = data.total;
         const products = data.products
       setDataTotal(total);
       fetchItems(products);
     };
-    fetchProductList();
+    fetchProductList(skip, inputValue, limit);
   }, [skip, inputValue]);
 
   const handleAddToBasket = (id) => {
@@ -60,7 +60,7 @@ function App() {
 
   const handlePageChange = (page) => {
     setSkip(() => {
-      return (page - 1) * limit
+      return (page - 1) * limit;
     });
   };
 
