@@ -3,10 +3,10 @@ import "./Body.css";
 function Body({ items, addToBasket, basketItems, handleDeleteButton}) {
   return (
     <div className="container">
-      <div className="row row-cols-3 row-cols-md-4 g-4">
+      <div className="row">
         {items.map((item) => {
           return (
-            <div key={item.id} className="col">
+            <div key={item.id} className="col-sm-12 col-md-3 mb-3">
               <div className="card">
                 <img src={item.thumbnail} className="card-img-top" alt="..." />
                 <div className="card-body">

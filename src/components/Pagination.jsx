@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Pagination.css";
 function Pagination({
   total,
   pageSize,
@@ -60,7 +61,7 @@ function Pagination({
 }
 Pagination.defaultProps = {
   total: 0,
-  pageSize: 10,
+  pageSize: 20,
   defaultCurrentPage: 1,
   nextLabel: "Next",
   prevLabel: "Prev",

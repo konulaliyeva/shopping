@@ -6,6 +6,7 @@ import Body from "./components/Body";
 import Basket from "./components/Basket";
 import Footer from "./components/Footer";
 import Pagination from "./components/Pagination";
+import { Route, Routes } from "react-router-dom";
 function App() {
   const [basket, showBasket] = useState(false);
   const [items, fetchItems] = useState([]);
@@ -15,7 +16,7 @@ function App() {
   const [total, setDataTotal] = useState(0);
   const [inputValue, setInputValue] = useState("");
 
-  const limit =8;
+  const limit =20;
 
   useEffect(() => {
     const fetchProductList = async (skip, inputValue, limit) => {
@@ -84,6 +85,7 @@ function App() {
         handleDeleteButton={handleDeleteButton}
       />
       <Pagination total={total} onPageChange={handlePageChange} />
+
       <Footer />
     </>
   );

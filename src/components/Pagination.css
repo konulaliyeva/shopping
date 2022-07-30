@@ -1,0 +1,8 @@
+
+@media screen and (max-width:540px) {
+    .pagination{
+        width: 70px;
+        transform: translate(140px);
+    }
+    
+  }
