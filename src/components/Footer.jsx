@@ -13,7 +13,7 @@ function Footer() {
         </a>
       </div>
       <div>
-        <p>The page is created by Konul Ali</p>
+        <p>The page was created for e-commerce purpose</p>
         <span>© 2022 Konul Ali. All rights reserved.</span>
       </div>
     </div>

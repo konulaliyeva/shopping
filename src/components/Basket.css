@@ -51,3 +51,12 @@
 .display_basket{
     display: none;
 }
+
+@media screen and (max-width:540px) {
+    .basket {
+        height: 300px;
+        width: 300px;
+        position: fixed;
+    }
+    
+  }
