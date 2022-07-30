@@ -58,5 +58,7 @@
         width: 300px;
         position: fixed;
     }
-    
+    .basket_products {
+        font-size: 15px;
+    }
   }
